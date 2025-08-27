@@ -9,6 +9,9 @@ def get_roots(number_graph: nx.DiGraph, name:str)->list[str]:
     roots = [node for node in nx.ancestors(number_graph, name) if number_graph.in_degree(node)==0]
     return roots
 
+def get_last_steps(number_graph:nx.DiGraph, name:str, target:int)->list[str]:
+    return [node for node in nx.descendants(number_graph,name) if number_graph.nodes[node]["rank"] == 2 and number_graph.nodes[node]["solutions"][target] > 0]
+
 def get_parents(number_graph: nx.DiGraph, name:str)->list[str]:
     if name not in number_graph.nodes:
         return []
